@@ -1,3 +1,5 @@
+package Chapter_5;
+
 public class Bubble {
     public static void main(String[] args) {
         int[] nums = { 99, -10, 100123, 18, -978,
@@ -10,7 +12,7 @@ public class Bubble {
         for(int i=0; i < size; i++)
             System.out.print(" " + nums[i]);
         System.out.println();
-        // This is the Bubble sort.
+        // This is the Chapter_5.Bubble sort.
         for(a = 0; a < size - 1; a++)
             for(b = a + 1; b < size; b++) {
                 if(nums[a] > nums[b]) { // if out of order

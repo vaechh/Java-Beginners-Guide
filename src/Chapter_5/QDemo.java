@@ -1,3 +1,5 @@
+package Chapter_5;
+
 public class QDemo {
     public static void main(String[] args) {
         Queue bigQ = new Queue(100);
@@ -44,7 +46,7 @@ class Queue{
     // put a character into the queue
     void put(char ch) {
         if(putloc==q.length) {
-            System.out.println(" – Queue is full.");
+            System.out.println(" – Chapter_5.Queue is full.");
             return;
         }
         q[putloc++] = ch;
@@ -53,7 +55,7 @@ class Queue{
     // get a character from the queue
     char get() {
         if(getloc == putloc) {
-            System.out.println(" – Queue is empty.");
+            System.out.println(" – Chapter_5.Queue is empty.");
             return (char) 0;
         }
         return q[getloc++];

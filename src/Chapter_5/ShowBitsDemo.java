@@ -1,3 +1,5 @@
+package Chapter_5;
+
 public class ShowBitsDemo {
     public static void main(String[] args) {
         ShowBits b = new ShowBits(8);

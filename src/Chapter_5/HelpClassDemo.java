@@ -1,3 +1,5 @@
+package Chapter_5;
+
 public class HelpClassDemo {
     public static void main(String[] args) throws java.io.IOException {
         char choice, ignore;
@@ -62,7 +64,7 @@ class Help {
     }
 
     void showMenu() {
-        System.out.println("Help on:");
+        System.out.println("Chapter_5.Help on:");
         System.out.println(" 1. if");
         System.out.println(" 2. switch");
         System.out.println(" 3. for");
