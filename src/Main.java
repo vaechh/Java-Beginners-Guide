@@ -1,5 +1,11 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args)
+            throws IOException {
         String str = """
                 Hello! Вау!
                     И так могу
@@ -19,27 +25,33 @@ public class Main {
         System.out.println(i1 == i3);
         System.out.println(i3 == i4);
 
-        int[] numer = { 4, 8, 16, 32, 64, 128, 256, 512 };
-        int[] denom = { 2, 0, 4, 4, 0, 8 };
-        try { // outer try
-            for(int i=0; i<numer.length; i++) {
-                try { // nested try
-                    System.out.println(numer[i] + " / " +
-                            denom[i] + " is " +
-                            numer[i]/denom[i]);
-                }
-                catch (ArithmeticException exc) {
-                    // catch the exception
-                    System.out.println("Can't divide by Zero!");
-                }
-                catch (Throwable exc){
-                    System.out.println("Caught in nested try");
-                }
+        int i;
+        FileInputStream fin = null;
+        FileOutputStream fout = null;
+        // The following code opens a file, reads characters until EOF
+        // is encountered, and then closes the file via a finally block.
+        try {
+            fin = new FileInputStream("src/input.txt");
+            fout = new FileOutputStream("src/output.txt");
+            do {
+                i = fin.read();
+                if(i != -1)
+                    fout.write(i);
+            } while(i != -1);
+        } catch(IOException exc) {
+            System.out.println("I/O Error: " + exc);
+        } finally {
+            // Close file in all cases.
+            try {
+                if(fin != null) fin.close();
+            } catch(IOException exc) {
+                System.out.println("Error Closing File");
             }
-        } catch (ArrayIndexOutOfBoundsException exc) {
-            // catch the exception
-            System.out.println("No matching element found.");
-            System.out.println("Fatal error - program terminated.");
+            try {
+                if(fout != null) fout.close();
+            } catch(IOException exc) {
+                System.out.println("Error Closing Output File");
+            }
         }
     }
 
