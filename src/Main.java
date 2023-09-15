@@ -6,6 +6,15 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args)
             throws IOException {
+
+        TestThread tt1 = new TestThread("#First");
+        TestThread tt2 = new TestThread("#Second");
+        Thread t1 = new Thread(tt1);
+        Thread t2 = new Thread(tt2);
+        t1.start();
+        t2.start();
+
+
         String str = """
                 Hello! Вау!
                     И так могу
@@ -52,6 +61,27 @@ public class Main {
             } catch(IOException exc) {
                 System.out.println("Error Closing Output File");
             }
+        }
+    }
+
+    static class TestThread implements Runnable{
+        public static Integer counter = 0;
+        String name;
+        @Override
+        public void run() {
+            System.out.println("Thread " + name + " started.");
+            synchronized (counter) {
+                for (int i = 0; i < 10000; i++) {
+                    counter++;
+                }
+                System.out.println("Result value - " + counter);
+                counter = 0;
+            }
+            System.out.println("Thread " + name + " ended.");
+        }
+
+        public TestThread (String name){
+            this.name = name;
         }
     }
 
